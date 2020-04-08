@@ -1,7 +1,7 @@
 'use strict';
 
 import * as vscode from 'vscode';
-const tidyMarkdown: any = require('tidy-markdown');
+import tidyMarkdown from "@f-fjs/tidy-markdown";
 
 
 function getRangeOfDocument(document: vscode.TextDocument): vscode.Range {
@@ -13,7 +13,8 @@ function getRangeOfDocument(document: vscode.TextDocument): vscode.Range {
 function _runTidyMarkdown(document: vscode.TextDocument, range: vscode.Range, options: vscode.WorkspaceConfiguration): string {
     var content = document.getText(range);
     return tidyMarkdown(content, {
-        ensureFirstHeaderIsH1: options.get('ensureFirstHeaderIsH1', true)
+        ensureFirstHeaderIsH1: options.get('ensureFirstHeaderIsH1', true),
+        alignHeaders: options.get('alignHeaders', true)
     });
 }
 

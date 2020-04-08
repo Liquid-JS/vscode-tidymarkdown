@@ -49,6 +49,11 @@
                     "type": "boolean",
                     "default": true,
                     "description": "Ensure document starts with H1"
+                },
+                "tidyMarkdown.alignHeaders": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Ensure there are no gaps between headers"
                 }
             }
         }
@@ -67,6 +72,6 @@
         "vscode": "^1.1.36"
     },
     "dependencies": {
-        "tidy-markdown": "2.0.4"
+        "@f-fjs/tidy-markdown": "^2.0.8"
     }
 }
