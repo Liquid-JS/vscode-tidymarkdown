@@ -8,3 +8,7 @@ test/**
 **/*.map
 .gitignore
 tsconfig.json
+node_modules
+out
+**/*.log
+rollup.config.js

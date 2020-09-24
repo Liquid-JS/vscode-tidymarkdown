@@ -59,5 +59,6 @@ typings/
 
 .vscode-test
 out/
+dist/
 
 package-lock.json

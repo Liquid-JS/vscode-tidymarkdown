@@ -34,7 +34,7 @@
     "activationEvents": [
         "onLanguage:markdown"
     ],
-    "main": "./out/extension",
+    "main": "./dist/extension",
     "contributes": {
         "configuration": {
             "type": "object",
@@ -44,36 +44,36 @@
                     "type": "boolean",
                     "default": false,
                     "description": "Explicitly enable/disble the Tidy Markdown formatter"
-                },
-                "tidyMarkdown.ensureFirstHeaderIsH1": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "Ensure document starts with H1"
-                },
-                "tidyMarkdown.alignHeaders": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "Ensure there are no gaps between headers"
                 }
             }
         }
     },
     "scripts": {
-        "vscode:prepublish": "npm run compile",
+        "vscode:prepublish": "npm run compile && npm run bundle",
         "compile": "tsc -p ./",
         "watch": "tsc -watch -p ./",
         "postinstall": "node ./node_modules/vscode/bin/install",
         "test": "npm run compile && node ./node_modules/vscode/bin/test",
-        "build": "vsce package"
+        "build": "vsce package",
+        "bundle": "rollup -c ./rollup.config.js"
     },
     "devDependencies": {
+        "@rollup/plugin-commonjs": "^11.1.0",
+        "@rollup/plugin-json": "^4.0.3",
+        "@rollup/plugin-node-resolve": "^7.1.3",
         "@types/mocha": "^7.0.2",
         "@types/node": "^13.9.3",
+        "rollup": "^2.7.2",
         "typescript": "^3.8.3",
         "vsce": "^1.75.0",
         "vscode": "^1.1.36"
     },
     "dependencies": {
-        "@f-fjs/tidy-markdown": "^2.1.2"
+        "@f-fjs/tidy-markdown": "^2.1.2",
+        "front-matter": "^3.1.0",
+        "js-yaml": "^3.13.1",
+        "parse5": "^6.0.0",
+        "remark": "^12.0.0",
+        "remark-preset-lint-markdown-style-guide": "^3.0.0"
     }
 }
