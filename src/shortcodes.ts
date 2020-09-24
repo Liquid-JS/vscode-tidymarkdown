@@ -1,5 +1,9 @@
-import tidyMarkdown from "@f-fjs/tidy-markdown";
 import { parseFragment, serialize } from "parse5";
+import remark from "remark";
+import guide from "remark-preset-lint-markdown-style-guide";
+
+const rm = remark()
+    .use(guide)
 
 /*
    remark-shortcodes
@@ -161,8 +165,8 @@ function parseShortcodeAttributes(attributeString) {
     const attr = parseFragment(`<tag ${attributeString}/>`)["childNodes"][0].attrs || [];
 
     const attributes = attr.reduce((t, { name, value }) => {
-        t[name] = mdAttrs.add(name.toLowerCase())
-            ? tidyMarkdown("" + (value || "")).trim()
+        t[name] = mdAttrs.has(name.toLowerCase())
+            ? String(rm.processSync("" + (value || ""))).trim()
             : value;
         return t;
     }, {});

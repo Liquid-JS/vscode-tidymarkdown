@@ -1,5 +1,3 @@
-'use strict';
-
 import fm from "front-matter";
 import yaml from "js-yaml";
 import remark from "remark";
